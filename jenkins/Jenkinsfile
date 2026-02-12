@@ -30,6 +30,11 @@ pipeline {
                       $DOCKER_IMAGE npm run pw:test
                 '''
             }
+            post {
+                always {
+                    allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+                }
+            }
         }
 
         stage('Generate Allure Report') {
@@ -47,7 +52,6 @@ pipeline {
     post {
         always {
             junit 'test-results/junit.xml'
-            allure includeProperties: false, results: [[path: 'allure-results']]
             archiveArtifacts artifacts: 'allure-report/**', allowEmptyArchive: true
         }
     }
