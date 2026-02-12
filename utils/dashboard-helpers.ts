@@ -1,4 +1,5 @@
 import { expect, Page, TestInfo } from '@playwright/test';
+import * as allure from "allure-js-commons";
 
 export type CardCheck = {
     name: string;
@@ -9,6 +10,7 @@ export type CardCheck = {
 
 export function addDescription(testInfo: TestInfo, description: string) {
     testInfo.annotations.push({ type: 'description', description });
+    void allure.description(description);
 }
 
 export async function isSessionExpired(page: Page): Promise<boolean> {

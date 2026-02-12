@@ -3,27 +3,28 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-"scripts": {
-  "pw:login": "npx playwright test tests/auth/global-login.setup.spec.ts",
-  "pw:login:force": "cross-env FORCE_LOGIN=true npx playwright test tests/auth/global-login.setup.spec.ts",
-  "pw:dashboard": "npx playwright test tests/dashboard/dashboard-smoke.spec.ts",
-  "pw:smoke:all": "npx playwright test tests/regression/oat.spec.ts",
-  "pw:test": "npx playwright test",
-  "pw:headed": "npx playwright test --headed",
-  "pw:ui": "npx playwright test --ui",
-  "pw:debug": "npx playwright test --debug",
-  "pw:report": "npx playwright show-report",
-  "pw:retry": "npx playwright test --last-failed",
-  "pw:full": "npm run pw:login && npm run pw:smoke:all",
-  "pw:unit:float": "npx playwright test tests/unit/float-management/partner-onboarding.spec.ts",
-  "pw:internal:create": "npx playwright test tests/users/internal/create.spec.ts",
-  "pw:internal:edit": "npx playwright test tests/users/internal/edit.spec.ts",
-  "pw:external:create": "npx playwright test tests/users/external/create.spec.ts",
-  "pw:external:edit": "npx playwright test tests/users/external/edit.spec.ts"
-
-
-}
-,
+  "scripts": {
+    "pw:login": "npx playwright test tests/auth/global-login.setup.spec.ts",
+    "pw:login:force": "cross-env FORCE_LOGIN=true npx playwright test tests/auth/global-login.setup.spec.ts",
+    "pw:dashboard": "npx playwright test tests/dashboard/dashboard-smoke.spec.ts",
+    "pw:smoke:oat": "npx playwright test tests/regression/oat.spec.ts",
+    "pw:smoke:prod": "npx playwright test tests/regression/prod.spec.ts",
+    "pw:test": "npx playwright test",
+    "pw:headed": "npx playwright test --headed",
+    "pw:ui": "npx playwright test --ui",
+    "pw:debug": "npx playwright test --debug",
+    "pw:report": "npx playwright show-report",
+    "pw:retry": "npx playwright test --last-failed",
+    "pw:full": "npm run pw:login && npm run pw:smoke:all",
+    "pw:unit:float": "npx playwright test tests/unit/float-management/partner-onboarding.spec.ts",
+    "pw:internal:create": "npx playwright test tests/users/internal/create.spec.ts",
+    "pw:internal:edit": "npx playwright test tests/users/internal/edit.spec.ts",
+    "pw:external:create": "npx playwright test tests/users/external/create.spec.ts",
+    "pw:external:edit": "npx playwright test tests/users/external/edit.spec.ts",
+    "pw:allure": "npx playwright test tests/alure/reporter.spec.ts && npm run pw:allure:serve",
+    "pw:allure:serve": "npx allure generate ./allure-results -o ./allure-report --clean",
+    "pw:allure:open": "npx allure open ./allure-report"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -31,7 +32,9 @@
   "devDependencies": {
     "@playwright/test": "^1.57.0",
     "@types/imap-simple": "^4.2.10",
-    "@types/node": "^25.0.3"
+    "@types/node": "^25.0.3",
+    "allure-commandline": "^2.36.0",
+    "allure-playwright": "^3.4.5"
   },
   "dependencies": {
     "dotenv": "^17.2.3",

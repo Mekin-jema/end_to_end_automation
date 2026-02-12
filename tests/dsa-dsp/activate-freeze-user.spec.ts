@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../fixtures/allure-test';
 test.use({ storageState: 'storageState.json' });
 // update location for a user
 test.skip('test', async ({ page }) => {

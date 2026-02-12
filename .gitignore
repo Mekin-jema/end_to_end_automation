@@ -6,7 +6,41 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+/.cache/
+/allure-results/
+/allure-report/
 
+# Node/TS build artifacts
+dist/
+build/
+coverage/
+.turbo/
+.next/
+.parcel-cache/
+.vite/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS/Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Package manager cache
+.npm/
+.pnpm-store/
+.yarn/
+
+# Local env / secrets
+
+.env.*
 .env
 storageState.json
+
 # reset argew tikkl kalhne ok
