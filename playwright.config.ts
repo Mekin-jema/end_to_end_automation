@@ -13,10 +13,11 @@ export default defineConfig({
   
 
   // Show detailed test output
-  reporter: [
-    ["allure-playwright"],
-    ["junit", { outputFile: "test-results/junit.xml" }],
-  ],
+ reporter: [
+  ["allure-playwright", { outputFolder: "allure-results" }],
+  ["junit", { outputFile: "test-results/junit.xml" }]
+],
+
 
   use: {
     // baseURL: 'https://safaricom-partnerhub.safaricom.et',

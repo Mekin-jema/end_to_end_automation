@@ -1,53 +1,34 @@
 pipeline {
     agent any
 
-    options {
-        skipDefaultCheckout(true)
-    }
-
     environment {
-        DOCKER_IMAGE = 'playwright-tests'
-        LOCAL_REPO = '/var/jenkins_home/local_repo'
+        NODE_ENV = 'ci'
     }
 
     stages {
-        stage('Build Docker Image') {
+        stage('Install Dependencies') {
             steps {
-                dir("${LOCAL_REPO}") {
-                    sh 'docker build -t $DOCKER_IMAGE .'
-                }
+                sh 'npm ci'
+                sh 'npx playwright install'
             }
         }
 
         stage('Run Playwright Tests') {
             steps {
                 sh '''
-                    mkdir -p allure-results allure-report test-results
-                    docker run --rm \
-                      -e CI=true \
-                      -v "$WORKSPACE/allure-results:/app/allure-results" \
-                      -v "$WORKSPACE/test-results:/app/test-results" \
-                      $DOCKER_IMAGE npm run pw:test
+                    mkdir -p allure-results test-results
+                    npx playwright test
                 '''
-            }
-            post {
-                always {
-                    step([
-                        $class: 'AllureReportPublisher',
-                        results: [[path: 'allure-results']]
-                    ])
-                }
             }
         }
 
-        stage('Generate Allure Report') {
+        stage('Publish Allure Report') {
             steps {
-                sh '''
-                    docker run --rm \
-                      -v "$WORKSPACE/allure-results:/app/allure-results" \
-                      -v "$WORKSPACE/allure-report:/app/allure-report" \
-                      $DOCKER_IMAGE npx allure generate ./allure-results -o ./allure-report --clean
-                '''
+                allure(
+                    includeProperties: false,
+                    jdk: '',
+                    results: [[path: 'allure-results']]
+                )
             }
         }
     }
@@ -55,7 +36,7 @@ pipeline {
     post {
         always {
             junit 'test-results/junit.xml'
-            archiveArtifacts artifacts: 'allure-report/**', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'allure-results/**', allowEmptyArchive: true
         }
     }
 }
