@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   jenkins:
     build: ./jenkins
@@ -7,14 +5,11 @@ services:
     restart: unless-stopped
     user: root
     ports:
-      - "8080:8080"     # Jenkins web UI
-      - "50000:50000"   # Jenkins agent port
+      - "8080:8080"
+      - "50000:50000"
     volumes:
       - jenkins_home:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
-      - /home/mekin/Desktop/Projects/Safaricom/One_platform_automation:/var/jenkins_home/local_repo
     environment:
       JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"
-
-volumes:
-  jenkins_home:
+      PLAYWRIGHT_BROWSERS_PATH: /var/jenkins_home/ms-playwright

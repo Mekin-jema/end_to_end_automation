@@ -32,7 +32,10 @@ pipeline {
             }
             post {
                 always {
-                    allure properties: false, name: '', results: [[path: 'allure-results']]
+                    step([
+                        $class: 'AllureReportPublisher',
+                        results: [[path: 'allure-results']]
+                    ])
                 }
             }
         }
