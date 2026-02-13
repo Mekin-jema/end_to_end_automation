@@ -6,7 +6,7 @@ pipeline {
     }
 
     triggers {
-        githubPush()
+        pollSCM('H/5 * * * *')
     }
 
     stages {
@@ -37,18 +37,17 @@ pipeline {
                 expression { env.BRANCH_NAME == 'master' || env.GIT_BRANCH == 'origin/master' }
             }
             steps {
-                allure(
-                    includeProperties: false,
-                    jdk: '',
+                step([
+                    $class: 'AllureReportPublisher',
                     results: [[path: 'allure-results']]
-                )
+                ])
             }
         }
     }
 
     post {
         always {
-            junit 'test-results/junit.xml'
+            junit allowEmptyResults: true, testResults: 'test-results/junit.xml'
             archiveArtifacts artifacts: 'allure-results/**', allowEmptyArchive: true
         }
     }
