@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    parameters {
+        string(name: 'TEST_PATH', defaultValue: '', description: 'Optional: test file or folder, e.g. tests/login.spec.ts')
+    }
+
     environment {
         NODE_ENV = 'ci'
     }
@@ -27,7 +31,11 @@ pipeline {
             steps {
                 sh '''
                     mkdir -p allure-results test-results
-                    npx playwright test
+                                        if [ -n "$TEST_PATH" ]; then
+                                            npx playwright test "$TEST_PATH"
+                                        else
+                                            npx playwright test
+                                        fi
                 '''
             }
         }

@@ -10,6 +10,7 @@ export default defineConfig({
 
   // Increase timeout for debugging
   timeout: 4 * 60 * 1000,
+  workers:4,
   
 
   // Show detailed test output
