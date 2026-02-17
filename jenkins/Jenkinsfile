@@ -9,9 +9,7 @@ pipeline {
             NODE_ENV = 'ci'
         }
 
-        triggers {
-            githubPush()
-        }
+     
 
     stages {
         stage('Install Dependencies') {
