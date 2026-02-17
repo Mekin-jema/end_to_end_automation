@@ -1,17 +1,17 @@
 pipeline {
     agent any
 
-    parameters {
-        string(name: 'TEST_PATH', defaultValue: '', description: 'Optional: test file or folder, e.g. tests/login.spec.ts')
-    }
+        parameters {
+            string(name: 'TEST_PATH', defaultValue: '', description: 'Optional: test file or folder, e.g. tests/login.spec.ts')
+        }
 
-    environment {
-        NODE_ENV = 'ci'
-    }
+        environment {
+            NODE_ENV = 'ci'
+        }
 
-    triggers {
-        pollSCM('H/5 * * * *')
-    }
+        triggers {
+            githubPush()
+        }
 
     stages {
         stage('Install Dependencies') {
