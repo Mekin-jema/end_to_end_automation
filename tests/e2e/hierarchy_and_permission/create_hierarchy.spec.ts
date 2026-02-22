@@ -1,4 +1,4 @@
-import { test,expect } from "../../utils/fixtures/allure-test";
+import { expect, test } from "../../../utils/fixtures/allure-test";
 
 
 test.use({ storageState: 'storageState.json' });

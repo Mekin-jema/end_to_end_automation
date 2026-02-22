@@ -15,7 +15,9 @@ export default defineConfig({
   timeout: 4 * 60 * 1000,
 
   // Number of parallel workers
-  workers: 4,
+  workers: 38,
+  // Parallel execution of tests
+  fullyParallel:true,
 
   // Test reporters
   reporter: [
@@ -28,7 +30,7 @@ export default defineConfig({
     baseURL: 'https://one-platform-um-fe.oat.sma2.safaricomet.net',
 
     // Run browser with UI (not headless)
-    headless: false,
+    headless: true, // Set to false if you want to see the browser during test execution
 
     // 🔥 VERY IMPORTANT
     // Disable Playwright's fixed viewport
@@ -44,10 +46,10 @@ export default defineConfig({
     },
 
     // Capture screenshots
-    screenshot: 'on',
+    screenshot: "only-on-failure",
 
     // Record videos for tests
-    video: 'on',
+    video: "retain-on-failure",
 
     // Enable tracing (screenshots + DOM + source)
     trace: 'on',
@@ -63,5 +65,8 @@ export default defineConfig({
 
     // Reuse authenticated session created in globalSetup
     storageState: 'storageState.json',
+
+    // add playwright browsers f noly only chrome b;ut for the otthers
+    
   },
 });

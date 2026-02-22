@@ -3,8 +3,9 @@ import { expect, Page } from '@playwright/test';
 export class DashboardPage {
   constructor(private page: Page) {}
   async assertLoaded() {
-    await this.page.waitForLoadState('networkidle');
-    await expect(this.page).toHaveURL(/dashboard/i, { timeout: 30000 });
+    await this.page.waitForLoadState('domcontentloaded');
+    await this.page.waitForURL(/dashboard/i, { timeout: 60000 });
+    await expect(this.page.locator('body')).toBeVisible({ timeout: 10000 });
   }
   async openPartnerManagement() {
     await this.page.waitForLoadState('domcontentloaded');

@@ -1,5 +1,6 @@
+import { test } from "../../../utils/fixtures/allure-test";
 
-import { test} from "../../utils/fixtures/allure-test";
+
 test.use({ storageState: 'storageState.json' });
 
 test.describe('Create Permission', () => {
