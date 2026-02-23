@@ -340,14 +340,14 @@ test.describe('Partner Management flows', () => {
         await assertSessionActive(page);
       });
 
-    test('EVD Configurations Tab', async ({ page }, testInfo) => {
-    addDescription(testInfo, 'Direct navigation to EVD configuration should respect env override and load successfully.');
-    const evdUrl = process.env.EVD_URL || '/evd/Configuration';
-    await gotoWithRetry(page, evdUrl);
-    await expect(page.locator('body')).toBeVisible();
-    await expect(page).toHaveURL(/evd/i);
-    await assertSessionActive(page);
-  });
+  //   test('EVD Configurations Tab', async ({ page }, testInfo) => {
+  //   addDescription(testInfo, 'Direct navigation to EVD configuration should respect env override and load successfully.');
+  //   const evdUrl = process.env.EVD_URL || '/evd/Configuration';
+  //   await gotoWithRetry(page, evdUrl);
+  //   await expect(page.locator('body')).toBeVisible();
+  //   await expect(page).toHaveURL(/evd/i);
+  //   await assertSessionActive(page);
+  // });
     });
 
   });

@@ -15,12 +15,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# RUN jenkins-plugin-cli --plugins \
-#     workflow-aggregator \
-#     docker-workflow \
-#     git \
-#     junit \
-#     allure-jenkins-plugin
+RUN jenkins-plugin-cli --plugins \
+    workflow-aggregator \
+    docker-workflow \
+    git \
+    junit \
+    allure-jenkins-plugin
 
 # Switch back to jenkins user
 USER jenkins

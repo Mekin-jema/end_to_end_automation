@@ -15,7 +15,7 @@ export default defineConfig({
   timeout: 4 * 60 * 1000,
 
   // Number of parallel workers
-  workers: 38,
+  workers: 1,
   // Parallel execution of tests
   fullyParallel:true,
 
@@ -28,9 +28,10 @@ export default defineConfig({
   use: {
     // Base URL for all tests
     baseURL: 'https://one-platform-um-fe.oat.sma2.safaricomet.net',
+    
 
     // Run browser with UI (not headless)
-    headless: true, // Set to false if you want to see the browser during test execution
+    headless: false, // Set to false if you want to see the browser during test execution
 
     // 🔥 VERY IMPORTANT
     // Disable Playwright's fixed viewport
