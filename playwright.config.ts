@@ -18,6 +18,9 @@ export default defineConfig({
   workers: 1,
   // Parallel execution of tests
   fullyParallel:true,
+  
+  
+retries:1,
 
   // Test reporters
   reporter: [

@@ -21,14 +21,30 @@ test('global login and save storage state', async ({ page }) => {
 
   test.skip(!username || !password, 'Set LOGIN_USERNAME (or GMAIL_USER) and LOGIN_PASSWORD in env');
 
-  const loginPage = new LoginPage(page);
-  await loginPage.goto();
-  await loginPage.login(username as string, password as string);
+  // const loginPage = new LoginPage(page);
+  // await loginPage.goto();
+  // await loginPage.login(username as string, password as string);
 
-  const otp = '1111';
 
-  const otpVerify = new OtpVerifyPage(page);
-  await otpVerify.inputOtpAndVerify(otp);
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.getByRole('textbox', { name: 'Email' }).click();
+  await page.getByRole('textbox', { name: 'Email' }).fill('tedrosalemuu@gmail.com');
+  await page.getByRole('textbox', { name: 'Password' }).click();
+  await page.getByRole('textbox', { name: 'Password' }).fill('Defpass123!');
+  await page.getByRole('button', { name: 'Login' }).click();
+  await page.waitForTimeout(5000);
+ 
+  await page.getByRole('textbox').first().fill('1');
+  await page.getByRole('textbox').nth(1).fill('1');
+  await page.getByRole('textbox').nth(2).fill('1');
+  await page.getByRole('textbox').nth(3).fill('1');
+
+
+
+  // const otp = '1111';
+
+  // const otpVerify = new OtpVerifyPage(page);
+  // await otpVerify.inputOtpAndVerify(otp);
 
   // const dashboard = new DashboardPage(page);
   // await dashboard.assertLoaded();

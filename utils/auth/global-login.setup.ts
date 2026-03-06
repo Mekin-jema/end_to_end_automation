@@ -3,6 +3,7 @@ import fs from 'fs';
 import dotenv from 'dotenv';
 import { LoginPage } from '../../pages/LoginPage';
 import { DashboardPage } from '../../pages/DashboardPage';
+import { OtpVerifyPage } from '../../pages/OtpVerifyPage';
 
 
 dotenv.config();
@@ -84,8 +85,9 @@ export default async function globalSetup(config: FullConfig) {
   if (projectUse.navigationTimeout) page.setDefaultNavigationTimeout(projectUse.navigationTimeout);
 
   const loginPage = new LoginPage(page);
+
   await loginPage.goto();
-  await loginPage.login(username, password);
+  await loginPage.login(username, password,page);
 
 
 
