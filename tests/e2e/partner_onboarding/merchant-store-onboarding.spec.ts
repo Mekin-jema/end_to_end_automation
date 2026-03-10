@@ -36,6 +36,7 @@ test.describe("Safaricom Partner Hub - Merchant Onboarding (Merchant Store)", ()
     await page.getByRole("button", { name: "Next" }).click();
 
     await waitForAddressFields(page);
+    await page.waitForTimeout(4000);
     await page.getByRole("button", { name: "Next" }).click();
 
     await fillBusinessTypeSection(page, {
@@ -43,6 +44,7 @@ test.describe("Safaricom Partner Hub - Merchant Onboarding (Merchant Store)", ()
       channelSelectId: 3,
       channel: "Business Till Independet Store",
     });
+    
     await page.getByRole("button", { name: "Next" }).click();
 
     await fillBusinessTypeAndProductSection(page, {
