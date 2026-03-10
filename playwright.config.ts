@@ -31,7 +31,10 @@ retries:1,
   use: {
     // Base URL for all tests
     baseURL: 'https://one-platform-um-fe.oat.sma2.safaricomet.net',
-    
+ 
+  permissions: ['geolocation'],
+  geolocation: { latitude: 8.9806, longitude: 38.7578 }, // example coords
+  // ...your existing settings
 
     // Run browser with UI (not headless)
     headless: false, // Set to false if you want to see the browser during test execution

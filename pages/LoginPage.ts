@@ -11,14 +11,11 @@ export class LoginPage extends BasePage {
   }
 
   async login(username: string, password: string,page:Page) {
-    // await this.page.getByRole('textbox', { name: 'Username' }).fill(username);
-    // await this.page.getByRole('textbox', { name: 'Password' }).fill(password);
-    // await this.page.getByRole('button', { name: 'Login' }).click();
   await page.getByRole('button', { name: 'Login' }).click();
   await page.getByRole('textbox', { name: 'Email' }).click();
-  await page.getByRole('textbox', { name: 'Email' }).fill('tedrosalemuu@gmail.com');
+  await page.getByRole('textbox', { name: 'Email' }).fill(username);
   await page.getByRole('textbox', { name: 'Password' }).click();
-  await page.getByRole('textbox', { name: 'Password' }).fill('Defpass123!');
+  await page.getByRole('textbox', { name: 'Password' }).fill(password);
   await page.getByRole('button', { name: 'Login' }).click();
   await page.waitForTimeout(5000);
  
